@@ -52,14 +52,14 @@ def getJobDetails(article, latestDate: datetime, domain: str, searchString: str,
     # print(date001.strftime('%w'))
     if (latestDate < listingDate):
         return None
-    if getFullDetails == "yes":
+    if getFullDetails == "no":
         return {"job-id": article["data-job-id"],
                 "job-domain": domain,
                 "search-string": searchString,
                 "job-title": json.loads(jsonText)["jobdetails"]["result"]["title"].strip(),
                 "job-listing-date": " ".join(json.loads(jsonText)["jobdetails"]["result"]["listingDate"].split("T"))[:-5],
                 "job-url": "https://www.seek.com.au/job/" + article["data-job-id"]}
-    elif getFullDetails == "no":
+    elif getFullDetails == "yes":
         # print(searchString, article["data-job-id"], json.loads(jsonText)["jobdetails"]["result"]["title"].strip())
         return {"job-id": article["data-job-id"],
                 "job-title": json.loads(jsonText)["jobdetails"]["result"]["title"].strip(),
