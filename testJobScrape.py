@@ -11,7 +11,7 @@ import json
 from datetime import datetime, timedelta
 import pandas as pan
 
-jobPost = requests.get("https://www.seek.com.au/job/50707174?type=standout#searchRequestToken=6bf7699b-eeca-4240-ac34-e7673b9b2443").text
+jobPost = requests.get("https://www.seek.com.au/job/50770272").text
 jobSoupObject = BeautifulSoup(jobPost, "html.parser")
 scriptWithPostIDs = jobSoupObject.find("script", text = re.compile("window.SEEK_REDUX_DATA"))
 jsonText = re.search(r'^\s*window\.SEEK_REDUX_DATA\s*=\s*({.*?})\s*;\s*$',
