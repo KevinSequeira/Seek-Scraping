@@ -21,13 +21,13 @@ def initializeVariables():
     jobSearchStrings = {"Data Science": ["\"Data Scientist\"", "\"Junior Data Scientist\"", "\"Graduate Data Scientist\""],
                         "Data Analysis": ["\"Data Analyst\"", "\"Junior Data Analyst\"", "\"Graduate Data Analyst\""],
                         "Data Engineering": ["\"Data Engineer\"", "\"Junior Data Engineer\"", "\"Graduate Data Engineer\""],
-                        "Business Intelligence": ["\"Business Intelligence Developer\"", "\"Junior Business Intelligence Developer\"", "\"Graduate Business Intelligence Developer",
-                                         "BI Developer\"", "\"Junior BI Developer\"", "\"Graduate BI Developer\""],
+                        "Business Intelligence": ["\"Business Intelligence Developer\"", "\"Junior Business Intelligence Developer\"", "\"Graduate Business Intelligence Developer\"",
+                                         "\"BI Developer\"", "\"Junior BI Developer\"", "\"Graduate BI Developer\""],
                         "Machine Learning": ["\"Machine Learning Engineer\"", "\"Junior Machine Learning Engineer\"", "\"Graduate Machine Learning Engineer\""],
                         "Data Visualization": ["\"Data Visualization Developer\"", "\"Junior Data Visualization Developer\"", "\"Graduate Data Visualization Developer\""],
                         "ETL Development": ["\"ETL Developer\"", "\"Junior ETL Developer\"", "\"Graduate ETL Developer\""],
-                        "Database Administration": ["\"Database Developer\"", "\"Junior Database Developer\"", "\"Graduate Database Developer",
-                                                   "Database Administrator\"", "\"Junior Database Administrator\"", "\"Graduate Database Administrator\""],
+                        "Database Administration": ["\"Database Developer\"", "\"Junior Database Developer\"", "\"Graduate Database Developer\"",
+                                                   "\"Database Administrator\"", "\"Junior Database Administrator\"", "\"Graduate Database Administrator\""],
                         "Cloud Development": ["\"Cloud Developer\"", "\"Junior Cloud Developer\"", "\"Graduate Cloud Developer\""],
                         "Business Analysis": ["\"Business Analyst\"", "\"Junior Business Analyst\"", "\"Graduate Business Analyst\""]}
     return jobSearchStrings
@@ -79,9 +79,9 @@ def scrapeSearchResults(latestDate: datetime, domain: str, searchString: str):
             # print(date001.strftime('%w'))
             if (latestDate < listingDate):
                 continue
-            print(searchString, article["data-job-id"])
+            print(searchString, article["data-job-id"], json.loads(jsonText)["jobdetails"]["result"]["title"].strip())
             jobsList.append({"job-id": article["data-job-id"],
-                            "role-classification": domain,
+                            "job-domain": domain,
                             "search-string": searchString,
                             "job-title": json.loads(jsonText)["jobdetails"]["result"]["title"].strip(),
                             "job-listing-date": " ".join(json.loads(jsonText)["jobdetails"]["result"]["listingDate"].split("T"))[:-5],
@@ -122,7 +122,7 @@ if __name__ == '__main__':
     scrapedJobs = pan.DataFrame(columns=["job-id", "job-domain", "search-string",
                                          "job-title", "job-listing-date", "job-url"])
     jobSearchStrings = initializeVariables()
-    dataJobsDataframe = loopOverRoles(latestDate = datetime(2020, 10, 31, 23, 59, 59, 99999),
+    dataJobsDataframe = loopOverRoles(latestDate = datetime(2020, 11, 5, 23, 59, 59, 99999),
         scrapedJobs = scrapedJobs,
         jobRoles = jobSearchStrings)
-    print(dataJobsDataframe.head(10))
+    dataJobsDataframe.to_csv("Seek Data Jobs.csv")
