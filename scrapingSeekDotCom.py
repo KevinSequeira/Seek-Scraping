@@ -22,13 +22,12 @@ def initializeVariables():
                         "Data Analysis": ["\"Senior Data Analyst\"", "\"Data Analyst\"", "\"Graduate Data Analyst\""],
                         "Data Engineering": ["\"Senior Data Engineer\"", "\"Data Engineer\""],
                         "Data Architect": ["\"Data Architect\""],
-                        "Business Intelligence": ["\"Business Intelligence Developer\"", "\"BI Developer\"", "\"Business Intelligence Specialist\"", "\"BI Specialist\""],
+                        "Business Intelligence": ["\"Business Intelligence Developer\"", "\"BI Developer\"", "\"Business Intelligence Specialist\"", "\"BI Specialist\"", "\"Business Intelligence Analyst\"", "\"BI Analyst\""],
                         "Machine Learning": ["\"Machine Learning Engineer\"", "\"Junior Machine Learning Engineer\"", "\"Graduate Machine Learning Engineer\""],
                         "Data Visualization": ["\"Data Visualization Developer\""],
                         "ETL Development": ["\"ETL Developer\"", "\"Junior ETL Developer\"", "\"Graduate ETL Developer\""],
                         "Database Administration": ["\"Senior Database Developer\"", "\"Database Developer\"", "\"Senior Database Administrator\"", "\"Database Administrator\""],
-                        "Cloud Development": ["\"Cloud Developer\"", "\"Cloud Engineer\""],
-                        "Business Analysis": ["\"Business Analyst\"", "\"Junior Business Analyst\"", "\"Graduate Business Analyst\""]}
+                        "Cloud Development": ["\"Cloud Developer\"", "\"Cloud Engineer\""]}
     return jobSearchStrings
 
 def getLatestJobs():
@@ -51,6 +50,7 @@ def getJobDetails(article, latestDate: datetime, domain: str, searchString: str,
     listingDate = datetime.strptime(" ".join(json.loads(jsonText)["jobdetails"]["result"]["listingDate"].split("T"))[:-5], "%Y-%m-%d %H:%M:%S")
     # print(date001.strftime('%w'))
     if (latestDate < listingDate):
+        print(listingDate)
         return None
     if getFullDetails == "no":
         return {"job-id": article["data-job-id"],
