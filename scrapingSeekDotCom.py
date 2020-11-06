@@ -89,7 +89,7 @@ def scrapeSearchResults(latestDate: datetime, domain: str, searchString: str, jo
     pageCount = 1
     stopIteration = "No"
     while True:
-        jobPosts= requests.get("https://www.seek.com.au/jobs-in-information-communication-technology?keywords=" + searchStringURL + "&page=" + str(pageCount) + "&sortmode=ListedDate").text
+        jobPosts= requests.get("https://www.seek.com.au/jobs?classification=1209%2C1210%2C6281%2C1223&keywords=" + searchStringURL + "&page=" + str(pageCount) + "&sortmode=ListedDate").text
         soupObject = BeautifulSoup(jobPosts, "html.parser")
         allPageArticles = soupObject.find("div", {"data-automation": "searchResults"})
         if allPageArticles != None:
@@ -165,5 +165,5 @@ if __name__ == '__main__':
         scrapedJobs = scrapedJobs,
         scrapedJobsMaster = scrapedJobsMaster,
         jobRoles = jobSearchStrings)
-    dataJobsDataframe.to_csv("Seek Data Jobs.csv")
-    dataJobsMasterDataFrame.to_csv("Seek Data Jobs Master.csv")
+    dataJobsDataframe.to_csv("Seek Data Jobs.csv", index = False)
+    dataJobsMasterDataFrame.to_csv("Seek Data Jobs Master.csv", index = False)
