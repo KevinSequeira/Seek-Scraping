@@ -22,18 +22,18 @@ os.chdir(os.getcwd())
 ## ========================================================================== ##
 def initializeVariables():
     ## Initialize a dictionary of all relevant job search strings.
-    jobSearchStrings = {"Data Science": ["\"Senior Data Scientist\"", "\"Data Scientist\""],}
-                        # "Data Analysis": ["\"Senior Data Analyst\"", "\"Data Analyst\"", "\"Graduate Data Analyst\""],
-                        # "Data Engineering": ["\"Senior Data Engineer\"", "\"Data Engineer\""],
-                        # "Data Architect": ["\"Senior Data Architect\"", "\"Data Architect\""],
-                        # "Business Intelligence": ["\"Senior Business Intelligence Developer\"", "\"Senior BI Developer\"", "\"Senior Business Intelligence Specialist\"", "\"Senior BI Specialist\"", "\"Senior Business Intelligence Analyst\"", "\"Senior BI Analyst\"",
-                        #     "\"Business Intelligence Developer\"", "\"BI Developer\"", "\"Business Intelligence Specialist\"", "\"BI Specialist\"", "\"Business Intelligence Analyst\"", "\"BI Analyst\""],
-                        # "Machine Learning": ["\"Senior Machine Learning Engineer\"", "\"Machine Learning Engineer\""],
-                        # "Data Visualization": ["\"Data Visualization Developer\""],
-                        # "ETL Development": ["\"Senior ETL Developer\"", "\"ETL Developer\""],
-                        # "Database Administration": ["\"Senior Database Developer\"", "\"Database Developer\"", "\"Senior Database Administrator\"", "\"Database Administrator\""],
-                        # "Cloud Development": ["\"Senior Cloud Developer\"", "\"Senior Cloud Engineer\"", "\"Senior Cloud Architect\"", "\"Senior Cloud Consultant\"",
-                        #     "\"Cloud Developer\"", "\"Cloud Engineer\"", "\"Cloud Architect\"", "\"Cloud Consultant\""]}
+    jobSearchStrings = {"Data Science": ["\"Senior Data Scientist\"", "\"Data Scientist\""],
+                        "Data Analysis": ["\"Senior Data Analyst\"", "\"Data Analyst\"", "\"Graduate Data Analyst\""],
+                        "Data Engineering": ["\"Senior Data Engineer\"", "\"Data Engineer\""],
+                        "Data Architect": ["\"Senior Data Architect\"", "\"Data Architect\""],
+                        "Business Intelligence": ["\"Senior Business Intelligence Developer\"", "\"Senior BI Developer\"", "\"Senior Business Intelligence Specialist\"", "\"Senior BI Specialist\"", "\"Senior Business Intelligence Analyst\"", "\"Senior BI Analyst\"",
+                            "\"Business Intelligence Developer\"", "\"BI Developer\"", "\"Business Intelligence Specialist\"", "\"BI Specialist\"", "\"Business Intelligence Analyst\"", "\"BI Analyst\""],
+                        "Machine Learning": ["\"Senior Machine Learning Engineer\"", "\"Machine Learning Engineer\""],
+                        "Data Visualization": ["\"Data Visualization Developer\""],
+                        "ETL Development": ["\"Senior ETL Developer\"", "\"ETL Developer\""],
+                        "Database Administration": ["\"Senior Database Developer\"", "\"Database Developer\"", "\"Senior Database Administrator\"", "\"Database Administrator\""],
+                        "Cloud Development": ["\"Senior Cloud Developer\"", "\"Senior Cloud Engineer\"", "\"Senior Cloud Architect\"", "\"Senior Cloud Consultant\"",
+                            "\"Cloud Developer\"", "\"Cloud Engineer\"", "\"Cloud Architect\"", "\"Cloud Consultant\""]}
     return jobSearchStrings
 
 def getLatestJobs():
@@ -291,10 +291,10 @@ if __name__ == '__main__':
         jobRoles = jobSearchStrings,
         latestTimestamps = scrapedJobsLatest)
     if dataJobsDataframe.shape[0] > 0:
-        dataJobsDataframe.to_csv("Seek Data Jobs - " + datetime.now().strftime("%m%d%Y%H%M%S") + ".csv", index = False)
-        dataJobsMasterDataFrame.to_csv("Seek Data Jobs Master - " + datetime.now().strftime("%m%d%Y%H%M%S") + ".csv", index = False)
+        dataJobsDataframe.to_csv("Seek Data Jobs.csv", mode = "a", index = False)
+        dataJobsMasterDataFrame.to_csv("Seek Data Jobs Master.csv", mode = "a", index = False)
         dataFrameJobContacts = pan.DataFrame(contactsList, columns = ["job-id", "contact-type", "value"])
-        dataFrameJobContacts.to_csv("Seek Data Jobs Contacts - " + datetime.now().strftime("%m%d%Y%H%M%S") + ".csv", index = False)
+        dataFrameJobContacts.to_csv("Seek Data Jobs Contacts.csv", mode = "a", index = False)
     newScrapedJobsLatest = dataJobsDataframe.groupby(["search-string"], as_index = False).agg({"job-listing-date": "max"})
     scrapedJobsLatest = scrapedJobsLatest.join(newScrapedJobsLatest.set_index("search-string"), on = ["search-string"], lsuffix = "-old", rsuffix = "-new")
     scrapedJobsLatest["job-listing-date"] = scrapedJobsLatest["job-listing-date"].fillna("1000-01-01 00:00:00")
