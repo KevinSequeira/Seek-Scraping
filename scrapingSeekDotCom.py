@@ -285,7 +285,7 @@ if __name__ == '__main__':
                                            ["Cloud Consultant", "1000-01-01 00:00:00"]],
                                            columns = ["search-string", "latest-timestamp"])
     jobSearchStrings = initializeVariables()
-    dataJobsDataframe, dataJobsMasterDataFrame, contactsList = loopOverRoles(latestDate = datetime(2020, 11, 7, 23, 59, 59, 99999),
+    dataJobsDataframe, dataJobsMasterDataFrame, contactsList = loopOverRoles(latestDate = datetime.now(),
         scrapedJobs = scrapedJobs,
         scrapedJobsMaster = scrapedJobsMaster,
         jobRoles = jobSearchStrings,
