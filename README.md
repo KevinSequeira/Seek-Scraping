@@ -8,9 +8,11 @@ Scraping Seek.com.au for data on different Data Analytics jobs
   3. Clone this repository from GitHub
      <br>```git clone "https://github.com/KevinSequeira/Seek-Scraping.git"```
   4. After the cloning completes, you will see a new directory named "Seek-Scraping"
-  5. Activate the virtual environment
+  5. Change directory to "Seek-Scraping"
+     <br>```cd "Seek-Scraping"```
+  6. Activate the virtual environment
      <br>```source "bin/activate"```
-  6. Run the Python code
+  7. Run the Python code
      <br>```python3 scrapingSeekDotCom.py```
 
 ## For use on Linux / Mac
@@ -20,7 +22,9 @@ Scraping Seek.com.au for data on different Data Analytics jobs
   3. Clone this repository from GitHub
      <br>```git clone "https://github.com/KevinSequeira/Seek-Scraping.git"```
   4. After the cloning completes, you will see a new directory named "Seek-Scraping"
-  5. Activate the virtual environment
+  5. Change directory to "Seek-Scraping"
+     <br>```cd "Seek-Scraping"```
+  6. Activate the virtual environment
      <br>```source "bin/activate"```
-  6. Run the Python code
+  7. Run the Python code
      <br>```python3 scrapingSeekDotCom.py```
