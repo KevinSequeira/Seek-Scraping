@@ -15,7 +15,7 @@ Scraping Seek.com.au for data on different Data Analytics jobs
   7. Run the Python code
      <br>```python3 scrapingSeekDotCom.py```
 
-## For use on Linux / Mac
+## For use on Windows
   1. Download and install https://gitforwindows.org/
   2. Open gitforwindows, and change directory to location of your choice
      <br>```cd "path/to/directory/of/your/choice"```
